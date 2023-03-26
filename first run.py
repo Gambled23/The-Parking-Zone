@@ -14,3 +14,5 @@ print('Para ingresar al panel de administrador será necesario crear un usuario 
 usuario = input('Ingresa un usuario para el administrador:')
 contrasena = input('Ingresa una contraseña:')
 crearAdmin(usuario, contrasena)
+
+print('Haz terminado el proceso de configuración, ya puedes usar el programa!')
