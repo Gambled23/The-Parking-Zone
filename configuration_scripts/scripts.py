@@ -31,7 +31,7 @@ def createTables():
    cursor = conn.cursor()
 
    #Crear tabla cajon
-   sql = '''CREATE TABLE cajon (id_cajon SERIAL, PRIMARY KEY(id_cajon), fila VARCHAR(4), columna VARCHAR(4), discapacitados BOOL DEFAULT false, estado BOOL DEFAULT null)''';
+   sql = '''CREATE TABLE cajon (id_cajon SERIAL, PRIMARY KEY(id_cajon), fila VARCHAR(4), columna VARCHAR(4), discapacitados BOOL DEFAULT false, ocupado BOOL DEFAULT false)''';
    cursor.execute(sql)
    print("Tabla cajon creada")
 
@@ -48,6 +48,7 @@ def createTables():
    conn.close()
 
 def habilitarCajones(letra, numero):
+   letra = letra.lower()
    alphabet = list(string.ascii_lowercase)
    conn = psycopg2.connect(
       database="parkingzone", user='postgres', password='usuario', host='127.0.0.1', port= '5432'
@@ -79,3 +80,4 @@ def crearAdmin(usuario, contrasena):
    sql = ''f"INSERT into administrador (usuario, contrasena) values ('{usuario}', '{contrasena}')"''
    cursor.execute(sql)
    print(f"usuario {usuario} creado")
+   cursor.close()
