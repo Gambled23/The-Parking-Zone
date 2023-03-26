@@ -1,6 +1,5 @@
 import psycopg2
-
-#Establecer conexión con datos default
+import string
 
 def createDatabase():
    conn = psycopg2.connect(
@@ -47,3 +46,24 @@ def createTables():
    print("Tabla administrador creada")
 
    conn.close()
+
+def habilitarCajones(letra, numero):
+   alphabet = list(string.ascii_lowercase)
+   conn = psycopg2.connect(
+      database="parkingzone", user='postgres', password='usuario', host='127.0.0.1', port= '5432'
+   )
+   conn.autocommit = True
+   #Crear el cursor
+   cursor = conn.cursor()
+
+   for i in alphabet:
+      j = 1
+      bandera = True
+      while bandera:
+         sql = ''f"INSERT into cajon (fila, columna) values ('{i}', '{j}')"'';
+         cursor.execute(sql)
+         j = j + 1
+         if j == numero + 1:
+            bandera = False
+      if i == letra:
+         return
