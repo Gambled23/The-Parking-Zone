@@ -19,7 +19,6 @@ def obtenerUltimoRegistro(discapacitado):
     cursor.execute(sql)
     cajon = cursor.fetchone()
     print(cajon)
-    print(cajon[0])
     cursor.close()
 
 obtenerUltimoRegistro(True)
