@@ -9,10 +9,14 @@ def conectar():
     cursor = conn.cursor()
     return cursor
 
-def obtenerUltimoRegistro():
+def obtenerUltimoRegistro(discapacitado):
+    discapacitado = True
     cursor = conectar()
     #Obtener el cajón más cercano desocupado
-    sql = '''SELECT * FROM cajon WHERE ocupado IS NOT TRUE ORDER BY id_cajon ASC LIMIT 1''';
+    if discapacitado:
+        sql = '''SELECT * FROM cajon WHERE ocupado IS NOT TRUE and discapacitados IS TRUE ORDER BY id_cajon ASC LIMIT 1''';
+    else:
+        sql = '''SELECT * FROM cajon WHERE ocupado IS NOT TRUE ORDER BY id_cajon ASC LIMIT 1''';
     cursor.execute(sql)
     cajon = cursor.fetchone()
     print(cajon)
