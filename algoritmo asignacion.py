@@ -10,7 +10,6 @@ def conectar():
     return cursor
 
 def obtenerUltimoRegistro(discapacitado):
-    discapacitado = True
     cursor = conectar()
     #Obtener el cajón más cercano desocupado
     if discapacitado:
@@ -23,4 +22,5 @@ def obtenerUltimoRegistro(discapacitado):
     print(cajon[0])
     cursor.close()
 
-obtenerUltimoRegistro()
+obtenerUltimoRegistro(True)
+obtenerUltimoRegistro(False)
