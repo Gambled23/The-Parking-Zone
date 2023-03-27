@@ -18,8 +18,5 @@ def obtenerUltimoRegistro(discapacitado):
         sql = '''SELECT * FROM cajon WHERE ocupado IS NOT TRUE ORDER BY id_cajon ASC LIMIT 1''';
     cursor.execute(sql)
     cajon = cursor.fetchone()
-    print(cajon)
     cursor.close()
-
-obtenerUltimoRegistro(True)
-obtenerUltimoRegistro(False)
+    return cajon

@@ -1,7 +1,40 @@
-<hr />
-<p style="text-align: center;"><strong>Boletaje de estacionamiento</strong></p>
-<hr />
-<p style="text-align: left;">I {{my_name}} am signing this contract</p>
-<p style="text-align: left;">Date: {{today_date}}</p>
-<img src="H:\Codigos\The Parking Zone\ticket\qrticket.png">
-<p style="text-align: left;">{{my_name}}</p>
+<link rel="stylesheet" href="style.css">
+<div class="ticket">
+    <div class="triangulo"></div>
+
+    <div class="logo">
+        <img src="https://cdn-icons-png.flaticon.com/512/706/706401.png" alt="imagen-logo">
+    </div>
+
+    <div class="parkingzone">
+        <label>The Parking</label>
+        <br>
+        <label>Zone</label>
+    </div>
+
+    <div class="recibo">
+        <hr>
+        <label>Ticket de Estacionamiento</label>
+        <hr>
+    </div>
+
+    <div class="informacion">
+        <br>
+        <div class="entrada">
+            <label>Entrada: </label>
+            <label>{{fecha}}</label>
+            <label>{{hora}}</label>
+        </div>
+        <div class="salida">
+            <label>Lugar: </label>
+            <label>{{letra}}-{{numero}}</label>
+        </div>
+    </div>
+
+    <div class="qr">
+        <hr>
+        <img src="H:\Codigos\The Parking Zone\ticket\qrticket.png" alt="codigo-qr">
+    </div>
+
+    <div class="triangulo2"></div>
+</div>
