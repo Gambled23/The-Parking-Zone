@@ -1,51 +1,38 @@
 import string
-import prettytable
+from prettytable import PrettyTable
 from algoritmo_asignacion import conectar
 
 def ver_estacionamiento():
-    #obtener todos los lugares
+    #obtener el ultimo lugar
     cursor = conectar()
     sql = '''SELECT id_cajon, fila, columna, ocupado FROM cajon ORDER BY id_cajon DESC limit 1''';
     cursor.execute(sql)
     cajon = cursor.fetchone()
     letra = cajon[1].lower()
     numero = int(cajon[2])
-    sql = '''SELECT id_cajon, fila, columna, ocupado FROM cajon ORDER BY id_cajon''';
-    cursor.execute(sql)
-    cajon = cursor.fetchall()
-    #print(cajon) #Todo el cajon
-    print(cajon[0])
-    print(cajon[0][3]) #estado de cajon true false
-    #imprimir los datos
-    longitud = len(cajon)
-    
+
+    estacionamiento = PrettyTable()
+    listaNumeros = [] #El header de la tabla
+    for i in range(0, numero + 1):
+        listaNumeros.insert(i, i)
+    estacionamiento.field_names = listaNumeros
+
     alphabet = list(string.ascii_lowercase)
-    #imprimir numeros y letras
-    for i in range(numero + 1):
-        print(i, end="    ")
-    print("")
-    print('a', end="    ")
-    k = 1
-    j = 1
-    #Imprimir lugares vacios/ocupados
-    for i in range(longitud):
-        if cajon[i][3] == False:
-            if j == numero:
-                print('□')
-                print(alphabet[k], end="    ")
-                k = k + 1
-                j = 0
+    for j in alphabet:
+        listaDisponibles = [j]
+        sql = ''f"SELECT id_cajon, fila, columna, ocupado FROM cajon WHERE fila = '{j}' ORDER BY id_cajon"'';
+        cursor.execute(sql)
+        cajon = cursor.fetchall()
+        for i in range(numero):
+            if cajon[i][3] == True:
+                listaDisponibles.append('■')
             else:
-                print('□', end = "    ")
-        else:
-            if j == numero:
-                print('■')
-                print(alphabet[k], end="    ")
-                k = k + 1
-                j = 0
-            else:
-                print('■', end = "    ")
-        j = j+1
+                listaDisponibles.append('□')
+        estacionamiento.add_row(listaDisponibles)
+        if j == letra:
+            break
+    print(estacionamiento)
+
     cursor.close
 
 ver_estacionamiento()
