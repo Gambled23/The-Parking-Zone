@@ -16,8 +16,6 @@ def casoBase():
     conn.close()
 
 # Toda la fila de A es discapacitados, ocupados del 1-5
-
-
 def caso1():
     conn = psycopg2.connect(
         database="parkingzone", user='postgres', password='usuario', host='127.0.0.1', port='5432'
@@ -31,8 +29,6 @@ def caso1():
     conn.close()
 
 # Discapacitados toda A y ocupados random
-
-
 def caso2():
     conn = psycopg2.connect(
         database="parkingzone", user='postgres', password='usuario', host='127.0.0.1', port='5432'
