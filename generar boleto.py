@@ -4,9 +4,14 @@ import qrcode
 from datetime import datetime
 import algoritmo_asignacion
 
-def actualizarCajon(cajon):
+#Actualizar a ocupado registro de tabla cajon
+def actualizarTablas(cajon):
     cursor = algoritmo_asignacion.conectar();
     sql = ''f"UPDATE cajon SET ocupado = True WHERE id_cajon = '{cajon[0]}'"'';
+    cursor.execute(sql)
+    
+    #Insertar registro a tabla ticket
+    sql = ''f"INSERT into ticket(id_cajon) values ({cajon[0]})"'';
     cursor.execute(sql)
     cursor.close()
 
@@ -30,7 +35,7 @@ def generarPDF (discapacitado):
     config = pdfkit.configuration(wkhtmltopdf='C:\Program Files\wkhtmltopdf\\bin\wkhtmltopdf.exe')
     pdfkit.from_string(output_text, './ticket/ticket.pdf', configuration=config, css='ticket\style.css', options={"enable-local-file-access": ""})
     
-    actualizarCajon(cajon)
+    actualizarTablas(cajon)
 
 def generarQR(cajon):
     letra = cajon[1].upper()
