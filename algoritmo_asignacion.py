@@ -9,7 +9,7 @@ def conectar():
     cursor = conn.cursor()
     return cursor
 
-def obtenerUltimoRegistro(discapacitado):
+def obtenerCajon(discapacitado):
     cursor = conectar()
     #Obtener el cajón más cercano desocupado
     if discapacitado:

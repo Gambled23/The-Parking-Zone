@@ -9,7 +9,7 @@ def generarPDF (discapacitado):
     hora = f'{datetime.today().hour}:{datetime.today().minute}'
     file_path = 'H:\Codigos\The Parking Zone\qrticket.png'
     #obtener cajon asignado
-    cajon = algoritmo_asignacion.obtenerUltimoRegistro(discapacitado)
+    cajon = algoritmo_asignacion.obtenerCajon(discapacitado)
     letra = cajon[1].upper()
     numero = cajon[2]
     context = {'fecha': fecha, 'hora': hora, 'file_path': file_path, 'letra':letra, 'numero':numero}
@@ -26,7 +26,7 @@ def generarPDF (discapacitado):
     pdfkit.from_string(output_text, './ticket/ticket.pdf', configuration=config, css='ticket\style.css', options={"enable-local-file-access": ""})
 
 def generarQR(discapacitado):
-    cajon = algoritmo_asignacion.obtenerUltimoRegistro(discapacitado)
+    cajon = algoritmo_asignacion.obtenerCajon(discapacitado)
     letra = cajon[1].upper()
     numero = cajon[2]
     data = f'{letra}{numero}'
