@@ -58,16 +58,6 @@ botonVizualizar.place(x=856, y=315)
 Label(root, text='Visualizar', font=('Arial, 20')).place(x=880, y=500)
 Label(root, text='estacionamiento completo', font=('Arial, 12'), fg='gray').place(x=848, y=545)
 
-
-
-
-
-
-
-
-
-
-
 # --------------------Footer--------------------
 empresaLabel = Label(root, text='THE PARKING ZONE')
 empresaLabel.config(bg='black', fg='white', font=('Helvetica', 18, 'bold'), width=80, height=1)
