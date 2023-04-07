@@ -12,7 +12,6 @@ def obtenerUltimosDatos():
     cajon = cursor.fetchone()
     conn.close()
     ultimoCajon = [cajon[1], cajon[2]]
-    print(ultimoCajon)
     return cajon
 
 def insertarFila(letraStr, numeroStr):

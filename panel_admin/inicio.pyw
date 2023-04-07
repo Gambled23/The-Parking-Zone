@@ -1,6 +1,7 @@
 from tkinter import *
 from tkinter import messagebox
 from asignarLugares import obtenerUltimosDatos, insertarFila
+from gestionarLugares import obtenerListaLugares, modificarCajon
 
 root = Tk()
 root.title('The parking zone - Administrador')
@@ -9,6 +10,8 @@ root.config(width=1200, height=650)
 root.iconbitmap('panel_admin\images\icono.ico')
 
 # funciones submenus
+
+
 def asignar():
     ventanaAsignar = Toplevel(root)
     ventanaAsignar.title("Asignar")
@@ -28,10 +31,47 @@ def asignar():
 
     def obtenerDatos():
         insertarFila(letraFila.get(), numeroFila.get())
-        messagebox.showinfo('Fila agregada', f'Se ha agregado hasta el cajon {letraFila.get()}-{numeroFila.get()}')
+        messagebox.showinfo(
+            'Fila agregada', f'Se ha agregado hasta el cajon {letraFila.get()}-{numeroFila.get()}')
         ventanaAsignar.destroy()
 
-    Button(ventanaAsignar, text='Agregar fila', command=lambda: obtenerDatos()).grid(row=3, column=0, columnspan=2)
+    Button(ventanaAsignar, text='Agregar fila',
+           command=lambda: obtenerDatos()).grid(row=3, column=0, columnspan=2)
+
+
+def modificar():
+    ventanaModificar = Toplevel(root)
+    ventanaModificar.title("Modificar")
+    Label(ventanaModificar, text="Cajon a modificar: ", font=(
+        'Helvetica 17 bold'), pady=10, padx=25).grid(row=0, column=0, columnspan=4)
+    
+    Label(ventanaModificar, text='Letra:').grid(row=1, column=0)
+    listaFilas = obtenerListaLugares()[0]
+    variableFilas = StringVar()
+    variableFilas.set(listaFilas[0])  # Valor por defecto de dropdown
+    OptionMenu(ventanaModificar, variableFilas, *listaFilas).grid(row=1, column=1)
+
+    Label(ventanaModificar, text='Numero:').grid(row=1, column=2)
+    listaColumnas = obtenerListaLugares()[1]
+    variableColumnas = StringVar()
+    variableColumnas.set(listaColumnas[0])  # Valor por defecto de dropdown
+    OptionMenu(ventanaModificar, variableColumnas, *listaColumnas).grid(row=1, column=3)
+
+    discapacitado = IntVar()
+    ocupado = IntVar()
+    Checkbutton(ventanaModificar, text='Discapacitado', variable=discapacitado).grid(row=2, column=0, columnspan=2)
+    Checkbutton(ventanaModificar, text='Ocupado', variable=ocupado).grid(row=2, column=2, columnspan=2, pady=10)
+
+    def mandarModificar():
+        fila=variableFilas.get()[2]
+        aux=variableColumnas.get()
+        columna = int(''.join(filter(str.isdigit, aux)))
+        modificarCajon(fila, columna, discapacitado.get(), ocupado.get())
+       
+    Button(ventanaModificar, text='Modificar cajon',
+           command=lambda: mandarModificar()).grid(row=3, column=0, columnspan=4, pady=10)
+    
+    
 
 
 # --------------------Header--------------------
@@ -82,7 +122,7 @@ Label(root, text='nuevos lugares', font=(
 
 # boton modificar
 photo2 = PhotoImage(file="panel_admin\\images\\check.gif")
-botonModificar = Button(root, image=photo2, borderwidth=0)
+botonModificar = Button(root, image=photo2, borderwidth=0, command=modificar)
 botonModificar.place(x=514, y=315)
 
 Label(root, text='Modificar', font=('Arial, 20')).place(x=545, y=500)
