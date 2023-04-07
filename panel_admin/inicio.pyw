@@ -5,6 +5,7 @@ root = Tk()
 root.title('The parking zone - Administrador')
 root.resizable(False, False)
 root.config(width=1200, height=650)
+root.iconbitmap('panel_admin\images\icono.ico')
 # --------------------Header--------------------
 header = Label(root, text='')
 header.config(bg='black', width=1200, height=6)
@@ -14,6 +15,14 @@ logoImagen = PhotoImage(file='panel_admin\\images\\logo.gif')
 labelImagen =Label(root, image=logoImagen)
 labelImagen.config(width=100, height=70, bg='black')
 labelImagen.place(x=550, y=10)
+
+barraIzquierda = PhotoImage(file='panel_admin\\images\\barraIzquierda.gif')
+labelImagen =Label(root, image=barraIzquierda, bg='black')
+labelImagen.place(x=3, y=60)
+
+barraDerecha = PhotoImage(file='panel_admin\\images\\barraDerecha.gif')
+labelImagen =Label(root, image=barraDerecha, bg='black')
+labelImagen.place(x=758, y=60)
 # --------------------Body--------------------
 # parte superior
 administradorLabel = Label(root, text='ADMINISTRADOR')
