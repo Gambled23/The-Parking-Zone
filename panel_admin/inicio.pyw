@@ -25,14 +25,48 @@ crudLabel.config(font=('Arial', 12))
 crudLabel.place(x=10, y=140)
 
 salirBoton = Button(root, text='SALIR')
-salirBoton.config(bg='yellow', fg='black', padx=30)
+salirBoton.config(bg='#f4eb49', fg='black', padx=30, borderwidth=0)
 salirBoton.place(x=1050, y=115)
 
 separadorImagen = PhotoImage(file='panel_admin\\images\\separador.gif')
 separadorLabel =Label(root, image=separadorImagen)
 separadorLabel.config(width=1200, height=10)
 separadorLabel.place(x=0, y=165)
+
 # botones principales
+# boton asignar
+photo = PhotoImage(file = "panel_admin\\images\\flecha.gif")
+botonAsignar = Button(root, image = photo, borderwidth=0)
+botonAsignar.place(x=172, y=315)
+
+Label(root, text='Asignar', font=('Arial, 20')).place(x=208, y=500)
+Label(root, text='nuevos lugares', font=('Arial, 12'), fg='gray').place(x=202, y=545)
+
+# boton modificar
+photo2 = PhotoImage(file = "panel_admin\\images\\check.gif")
+botonModificar = Button(root, image = photo2, borderwidth=0)
+botonModificar.place(x=514, y=315)
+
+Label(root, text='Modificar', font=('Arial, 20')).place(x=545, y=500)
+Label(root, text='lugares existentes', font=('Arial, 12'), fg='gray').place(x=538, y=545)
+
+# boton visualizar
+photo3 = PhotoImage(file = "panel_admin\\images\\lupa.gif")
+botonVizualizar = Button(root, image = photo3, borderwidth=0)
+botonVizualizar.place(x=856, y=315)
+
+Label(root, text='Visualizar', font=('Arial, 20')).place(x=880, y=500)
+Label(root, text='estacionamiento completo', font=('Arial, 12'), fg='gray').place(x=848, y=545)
+
+
+
+
+
+
+
+
+
+
 
 # --------------------Footer--------------------
 empresaLabel = Label(root, text='THE PARKING ZONE')
