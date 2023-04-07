@@ -71,9 +71,6 @@ def modificar():
     Button(ventanaModificar, text='Modificar cajon',
            command=lambda: mandarModificar()).grid(row=3, column=0, columnspan=4, pady=10)
     
-    
-
-
 # --------------------Header--------------------
 header = Label(root, text='')
 header.config(bg='black', width=1200, height=6)
