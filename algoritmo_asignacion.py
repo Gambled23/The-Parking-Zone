@@ -13,9 +13,9 @@ def obtenerCajon(discapacitado):
     cursor = conectar()
     #Obtener el cajón más cercano desocupado
     if discapacitado:
-        sql = '''SELECT * FROM cajon WHERE ocupado IS NOT TRUE and discapacitados IS TRUE ORDER BY id_cajon ASC LIMIT 1''';
+        sql = '''SELECT * FROM cajon WHERE ocupado IS NOT TRUE and discapacitados IS TRUE ORDER BY id_cajon ASC LIMIT 1'''
     else:
-        sql = '''SELECT * FROM cajon WHERE ocupado IS NOT TRUE and discapacitados IS NOT TRUE ORDER BY id_cajon ASC LIMIT 1''';
+        sql = '''SELECT * FROM cajon WHERE ocupado IS NOT TRUE and discapacitados IS NOT TRUE ORDER BY id_cajon ASC LIMIT 1'''
     cursor.execute(sql)
     cajon = cursor.fetchone()
     cursor.close()
