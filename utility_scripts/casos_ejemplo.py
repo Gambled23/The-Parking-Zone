@@ -48,3 +48,4 @@ UPDATE cajon SET ocupado = True WHERE id_cajon = 33;'''
     cursor.execute(sql)
     conn.close()
 
+caso2()
