@@ -36,7 +36,7 @@ separadorLabel.place(x=0, y=165)
 
 # --------------------Footer--------------------
 empresaLabel = Label(root, text='THE PARKING ZONE')
-empresaLabel.config(bg='black', fg='white', font=('Helvetica', 18, 'bold'), width=86, height=1)
+empresaLabel.config(bg='black', fg='white', font=('Helvetica', 18, 'bold'), width=80, height=1)
 empresaLabel.place(x=0, y=617)
 
 
