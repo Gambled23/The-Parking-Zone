@@ -1,38 +1,43 @@
 from tkinter import *
 
-#Ventana de 14 x 6
+# Ventana de 14 x 6
 root = Tk()
 root.title('The parking zone - Administrador')
-root.resizable(False,False)
+root.resizable(False, False)
 root.config(width=1200, height=650)
+# --------------------Header--------------------
+header = Label(root, text='')
+header.config(bg='black', width=1200, height=6)
+header.place(x=0, y=0)
 
-framePrincipal = Frame(root, width=1200, height=650)
-framePrincipal.pack()
+logoImagen = PhotoImage(file='panel_admin\\images\\logo.gif')
+labelImagen =Label(root, image=logoImagen)
+labelImagen.config(width=100, height=70, bg='black')
+labelImagen.place(x=550, y=10)
+# --------------------Body--------------------
+# parte superior
+administradorLabel = Label(root, text='ADMINISTRADOR')
+administradorLabel.config(font=('Arial', 25))
+administradorLabel.place(x=10, y=100)
 
-#--------------------Header--------------------
-frameHeader = Frame(framePrincipal, width=1200, height=100)
-frameHeader.config(bg='black')
-frameHeader.pack()
+crudLabel = Label(root, text='CRUD')
+crudLabel.config(font=('Arial', 12))
+crudLabel.place(x=10, y=140)
 
-#--------------------Body--------------------
-frameBody = Frame(framePrincipal, width=1200, height=550)
-frameBody.pack()
-
-administradorLabel = Label(frameBody, text='ADMINISTRADOR')
-administradorLabel.grid(row=0, column=0, columnspan=2)
-
-salirBoton = Button(frameBody, text='SALIR')
+salirBoton = Button(root, text='SALIR')
 salirBoton.config(bg='yellow', fg='black', padx=30)
-salirBoton.grid(row=0, column=14)
+salirBoton.place(x=1050, y=115)
 
-#botones principales
+separadorImagen = PhotoImage(file='panel_admin\\images\\separador.gif')
+separadorLabel =Label(root, image=separadorImagen)
+separadorLabel.config(width=1200, height=10)
+separadorLabel.place(x=0, y=165)
+# botones principales
 
-
-#--------------------Footer--------------------
-empresaLabel = Label(frameBody, text='THE PARKING ZONE')
-empresaLabel.config(bg='black', fg='yellow')
-empresaLabel.grid(row=5, column=7, columnspan=14)
-
+# --------------------Footer--------------------
+empresaLabel = Label(root, text='THE PARKING ZONE')
+empresaLabel.config(bg='black', fg='white', font=('Helvetica', 18, 'bold'), width=86, height=1)
+empresaLabel.place(x=0, y=617)
 
 
 root.mainloop()
