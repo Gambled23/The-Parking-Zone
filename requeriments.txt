@@ -1,0 +1,16 @@
+autopep8==2.0.2
+colorama==0.4.6
+Jinja2==3.1.2
+MarkupSafe==2.1.2
+pdfkit==1.0.0
+Pillow==9.5.0
+prettytable==3.6.0
+printfactory==0.1.1
+psycopg2==2.9.5
+pycodestyle==2.10.0
+pydantic==1.10.7
+pypng==0.20220715.0
+qrcode==7.4.2
+tomli==2.0.1
+typing_extensions==4.5.0
+wcwidth==0.2.6
