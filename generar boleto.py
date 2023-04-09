@@ -4,6 +4,9 @@ import qrcode
 from datetime import datetime
 import algoritmo_asignacion
 
+import pathlib
+import printfactory
+
 #Actualizar a ocupado registro de tabla cajon
 def actualizarTablas(cajon):
     cursor = algoritmo_asignacion.conectar();
@@ -44,4 +47,17 @@ def generarQR(cajon):
     img = qrcode.make(data)
     img.save('./ticket/qrticket.png')
 
-generarPDF(False)
+
+
+def imprimirPDF():
+    printer = printfactory.Printer()
+    print_tool = printfactory.AdobeReader(printer)
+
+    file = pathlib.Path('ticket/ticket.pdf')
+    try:
+        print_tool.print_file(file) 
+    except:
+        return
+
+generarPDF(True)
+imprimirPDF()
