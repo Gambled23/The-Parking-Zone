@@ -39,6 +39,7 @@ def generarPDF (discapacitado):
     pdfkit.from_string(output_text, './ticket/ticket.pdf', configuration=config, css='ticket\style.css', options={"enable-local-file-access": ""})
     
     actualizarTablas(cajon)
+    imprimirPDF()
 
 def generarQR(cajon):
     letra = cajon[1].upper()
@@ -54,10 +55,11 @@ def imprimirPDF():
     print_tool = printfactory.AdobeReader(printer)
 
     file = pathlib.Path('ticket/ticket.pdf')
+    print_tool.timeout = 5
     try:
-        print_tool.print_file(file) 
+        print_tool.print_file(file)    
     except:
         return
 
-generarPDF(True)
-imprimirPDF()
+#generarPDF(True)
+
