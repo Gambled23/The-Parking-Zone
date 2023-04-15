@@ -61,5 +61,5 @@ def imprimirPDF():
     except:
         return
 
-#generarPDF(True)
+generarPDF(True)
 
