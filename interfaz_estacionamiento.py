@@ -1,8 +1,10 @@
 import string
+import os
 from prettytable import PrettyTable
 from algoritmo_asignacion import conectar
 
 def ver_estacionamiento():
+    os.system('cls')
     #obtener el ultimo lugar
     cursor = conectar()
     sql = '''SELECT id_cajon, fila, columna, ocupado FROM cajon ORDER BY id_cajon DESC limit 1''';
