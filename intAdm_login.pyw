@@ -1,7 +1,19 @@
 from tkinter import *
+from tkinter import messagebox
+import iniciarSesion
 
-def iniciarSesion(usuario, contrasena):
-    pass
+def obtenerDatos():
+    usuarioData = usuario.get()
+    contrasenaData = contrasena.get()
+    datosCorrectos = iniciarSesion.consultarBD(usuarioData, contrasenaData)
+
+    if datosCorrectos:
+        root.destroy()
+        with open("intAdm_inicio.pyw") as f:
+            exec(f.read())
+    else:
+        messagebox.showerror('Datos erroneos', 'Hay un error en el usuario o contraseña')
+
 
 root = Tk()
 root.title('The parking zone - Login')
@@ -30,7 +42,7 @@ entryUsuario.place(x=500, y=160)
 entryContrasena.config(show='*', highlightbackground='#f4eb49', highlightthickness=3, font=('Helvetica', 12, 'bold'))
 entryContrasena.place(x=500, y=260)
 
-botonLogin = Button(root, text='INICIAR SESIÓN', command=lambda:iniciarSesion(usuario, contrasena))
+botonLogin = Button(root, text='INICIAR SESIÓN', command=lambda:obtenerDatos())
 botonLogin.config(padx=10, fg='black', bg='#f4eb49', font=('Helvetica', 12, 'bold'))
 botonLogin.place(x=538, y=350)
 
