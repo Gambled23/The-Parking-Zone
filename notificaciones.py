@@ -6,8 +6,14 @@ def obtenerCajonesSospechosos():
     )
     conn.autocommit = True
     cursor = conn.cursor()
-    sql = "SELECT * from ticket WHERE hora_entrada < NOW() - INTERVAL '48 hours'"
+    sql = "SELECT * from ticket WHERE hora_entrada < NOW() - INTERVAL '48 hours' and hora_salida IS NULL"
     cursor.execute(sql)
-    cajones = cursor.fetchall()
+    listaSospechosos = cursor.fetchall()
+    for i in listaSospechosos:
+        sql = f"SELECT fila, columna from cajon WHERE id_cajon = {i[1]}"
+        cursor.execute(sql)
+        cajonSospechoso = cursor.fetchone()
+        print(f'El auto en el cajón {cajonSospechoso[0].upper()}-{cajonSospechoso[1]} lleva estacionado desde: {i[2]}')
     conn.close()
-    return cajones
+
+obtenerCajonesSospechosos()
