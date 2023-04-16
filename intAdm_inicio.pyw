@@ -3,6 +3,7 @@ from tkinter import messagebox
 from panel_admin.asignarLugares import obtenerUltimosDatos, insertarFila
 from panel_admin.gestionarLugares import obtenerListaLugares, modificarCajon
 from interfaz_estacionamiento import ver_estacionamiento
+from notificaciones import obtenerCajonesSospechosos
 
 root = Tk()
 root.title('The parking zone - Administrador')
@@ -98,6 +99,10 @@ administradorLabel.place(x=10, y=100)
 crudLabel = Label(root, text='CRUD')
 crudLabel.config(font=('Arial', 12))
 crudLabel.place(x=10, y=140)
+
+notificacionesBoton = Button(root, text='CAJONES SOSPECHOSOS', command=lambda:obtenerCajonesSospechosos())
+notificacionesBoton.config(bg='#f4eb49', fg='black', padx=30, borderwidth=0)
+notificacionesBoton.place(x=505, y=115)
 
 salirBoton = Button(root, text='SALIR', command=root.destroy)
 salirBoton.config(bg='#f4eb49', fg='black', padx=30, borderwidth=0)

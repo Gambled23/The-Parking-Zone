@@ -1,6 +1,8 @@
 import psycopg2
+import os
 
 def obtenerCajonesSospechosos():
+    os.system('cls')
     conn = psycopg2.connect(
         database="parkingzone", user='postgres', password='usuario', host='127.0.0.1', port= '5432'
     )
@@ -15,5 +17,3 @@ def obtenerCajonesSospechosos():
         cajonSospechoso = cursor.fetchone()
         print(f'El auto en el cajón {cajonSospechoso[0].upper()}-{cajonSospechoso[1]} lleva estacionado desde: {i[2]}')
     conn.close()
-
-obtenerCajonesSospechosos()
