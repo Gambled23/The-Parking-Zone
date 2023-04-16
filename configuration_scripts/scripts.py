@@ -36,7 +36,7 @@ def createTables():
    print("Tabla cajon creada")
 
    #Crear tabla ticket
-   sql = '''CREATE TABLE ticket (id_ticket SERIAL, PRIMARY KEY(id_ticket), id_cajon INTEGER, CONSTRAINT fk_cajon FOREIGN KEY(id_cajon) REFERENCES cajon(id_cajon), hora_entrada TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP, hora_salida TIMESTAMP WITH TIME ZONE)''';
+   sql = '''CREATE TABLE ticket (id_ticket SERIAL, PRIMARY KEY(id_ticket), id_cajon INTEGER, CONSTRAINT fk_cajon FOREIGN KEY(id_cajon) REFERENCES cajon(id_cajon), hora_entrada TIMESTAMP DEFAULT CURRENT_TIMESTAMP, hora_salida TIMESTAMP)''';
    cursor.execute(sql)
    print("Tabla ticket creada")
 
