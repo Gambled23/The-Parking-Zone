@@ -36,5 +36,3 @@ def ver_estacionamiento():
     print(estacionamiento)
 
     cursor.close
-
-ver_estacionamiento()
