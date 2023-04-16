@@ -11,6 +11,8 @@ def obtenerCajonesSospechosos():
     sql = "SELECT * from ticket WHERE hora_entrada < NOW() - INTERVAL '48 hours' and hora_salida IS NULL"
     cursor.execute(sql)
     listaSospechosos = cursor.fetchall()
+    if not listaSospechosos:
+        print('No hay autos sospechosos')
     for i in listaSospechosos:
         sql = f"SELECT fila, columna from cajon WHERE id_cajon = {i[1]}"
         cursor.execute(sql)
