@@ -1,6 +1,7 @@
 from tkinter import *
 from tkinter import messagebox
 import iniciarSesion
+import os
 
 def obtenerDatos():
     usuarioData = usuario.get()
@@ -9,8 +10,8 @@ def obtenerDatos():
 
     if datosCorrectos:
         root.destroy()
-        with open("intAdm_inicio.pyw") as f:
-            exec(f.read())
+        os.chdir("./")
+        os.system('python '+'intAdm_inicio.py') #Correr ventana inicio
     else:
         messagebox.showerror('Datos erroneos', 'Hay un error en el usuario o contraseña')
 
