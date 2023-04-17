@@ -1,7 +1,11 @@
 from configuration_scripts.scripts import createDatabase, habilitarCajones, crearAdmin
 
 #Crear base de datos y tablas
-createDatabase()
+try: 
+    createDatabase()
+except: #Si la base de datos ya existe
+    print('El programa ya ha sido instalado')
+    exit()
 
 #Crear cajones
 print('Bienvenido a la instalacion de The Parking Zone, deberá ingresar unos datos antes del primer uso\n')

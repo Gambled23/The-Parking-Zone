@@ -80,4 +80,4 @@ def crearAdmin(usuario, contrasena):
    sql = ''f"INSERT into administrador (usuario, contrasena) values ('{usuario}', '{contrasena}')"''
    cursor.execute(sql)
    print(f"usuario {usuario} creado")
-   cursor.close()
+   conn.close()
