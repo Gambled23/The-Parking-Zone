@@ -5,6 +5,7 @@ try:
     createDatabase()
 except: #Si la base de datos ya existe
     print('El programa ya ha sido instalado')
+    input('Presione una tecla para continuar...')
     exit()
 
 #Crear cajones
