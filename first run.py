@@ -1,23 +1,69 @@
+from tkinter import *
+from tkinter import messagebox
 from configuration_scripts.scripts import createDatabase, habilitarCajones, crearAdmin
+import string
 
 #Crear base de datos y tablas
 try: 
     createDatabase()
 except: #Si la base de datos ya existe
-    print('El programa ya ha sido instalado')
-    input('Presione una tecla para continuar...')
+    messagebox.showerror('Error', 'El programa ya está instalado')
     exit()
 
-#Crear cajones
-print('Bienvenido a la instalacion de The Parking Zone, deberá ingresar unos datos antes del primer uso\n')
-print('Los estacionamientos se componen de filas y columnas (A-21, C-12, X-03, etc)')
-letra = input("Ingresa la ultima letra del estacionamiento: ")
-numero = int(input("Ingresa el ultimo número del estacionamiento: "))
-habilitarCajones(letra, numero)
 
-print('Para ingresar al panel de administrador será necesario crear un usuario y una contraseña, no olvides estos datos ni los compartas con nadie externo')
-usuario = input('Ingresa un usuario para el administrador:')
-contrasena = input('Ingresa una contraseña:')
-crearAdmin(usuario, contrasena)
 
-print('Haz terminado el proceso de configuración, ya puedes usar el programa!')
+
+root = Tk()
+root.title('Instalación')
+Label(root, text="Instalación", font=('Helvetica 17 bold'), pady=10, padx=25).grid(row=0, column=0, columnspan=4)
+
+#Selección letras
+Label(root, text='Fila máxima:').grid(row=1, column=0)
+alphabet = list(string.ascii_uppercase)
+variableFilas = StringVar()
+variableFilas.set(alphabet[0])  # Valor por defecto de dropdown
+OptionMenu(root, variableFilas, *alphabet).grid(row=1, column=1)
+
+#Selección números
+Label(root, text='Columna máxima:').grid(row=2, column=0)
+r1, r2 = 1, 50
+numbers = [item for item in range(r1, r2+1)]
+variableColumnas = StringVar()
+variableColumnas.set(numbers[0])  # Valor por defecto de dropdown
+OptionMenu(root, variableColumnas, *numbers).grid(row=2, column=1)
+
+#Usuario admin
+usuarioObj = StringVar()
+Label(root, text='Usuario admin').grid(row=3, column=0)
+Entry(root, textvariable=usuarioObj).grid(row=3, column=1)
+
+#Contraseña admin
+contrasenaObj = StringVar()
+Label(root, text='Contraseña admin', ).grid(row=4, column=0)
+Entry(root, textvariable=contrasenaObj, show='*').grid(row=4, column=1)
+
+def enviar():
+    #Crear cajones
+    fila = variableFilas.get()
+    fila = fila.lower()
+    columna = variableColumnas.get()
+    columna = int(columna)
+    habilitarCajones(fila, columna)
+
+    #Crear admin
+    usuario = usuarioObj.get()
+    contrasena = contrasenaObj.get()
+    crearAdmin(usuario, contrasena)
+    messagebox.showinfo('The parking zone','Has terminado el proceso de instalación')
+    root.destroy()
+    
+botonEnviar = Button(root, text='Configurar', command=lambda: enviar())
+botonEnviar.grid(row=5, column=1, pady=10, padx=10)
+
+
+
+
+
+
+
+root.mainloop()
