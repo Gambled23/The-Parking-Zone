@@ -1,11 +1,11 @@
 from tkinter import *
 from tkinter import messagebox
-import os
 import iniciarSesion
+import string
 from panel_admin.asignarLugares import obtenerUltimosDatos, insertarFila
 from panel_admin.gestionarLugares import obtenerListaLugares, modificarCajon
-from interfaz_estacionamiento import ver_estacionamiento
 from notificaciones import obtenerCajonesSospechosos
+from verEstacionamiento import obtenerFilasColumnas, obtenerOcupados
 
 def asignar():
     ventanaAsignar = Toplevel(root)
@@ -65,6 +65,34 @@ def modificar():
        
     Button(ventanaModificar, text='Modificar cajon',
            command=lambda: mandarModificar()).grid(row=3, column=0, columnspan=4, pady=10)
+
+def visualizar():
+    ventanaVisualizar = Toplevel(root)
+    ventanaVisualizar.title("Visualizar")
+    filas, columnas = obtenerFilasColumnas()
+    i = 1
+    Label(ventanaVisualizar, text='X', font=('Helvetica 10 bold')).grid(row=0, column=0)
+
+    #Imprimir filas y columnas
+    for fila in filas:
+        Label(ventanaVisualizar,text=fila[0].upper(), font=('Helvetica 10 bold')).grid(row= 0, column= i, padx=8)
+        i +=1
+    i = 1
+    for columna in columnas:
+        Label(ventanaVisualizar,text=columna[0], font=('Helvetica 10 bold')).grid(row= i, column= 0, pady=4)
+        i +=1
+
+    #Imprimir cajones
+    cajones = obtenerOcupados()
+    for cajon in cajones:
+        if cajon[2] == False:
+            Label(ventanaVisualizar,text='□').grid(row= int(cajon[1]), column= string.ascii_lowercase.index(cajon[0]) + 1, pady=4)
+        else:
+            Label(ventanaVisualizar,text='■').grid(row= int(cajon[1]), column= string.ascii_lowercase.index(cajon[0]) + 1, pady=4)
+
+    
+
+
 
 def ventanaPrincipal():
     global root 
@@ -136,7 +164,7 @@ def ventanaPrincipal():
 
     # boton visualizar
     photo3 = PhotoImage(file="panel_admin\\images\\lupa.gif")
-    botonVizualizar = Button(root, image=photo3, borderwidth=0, command=lambda:ver_estacionamiento())
+    botonVizualizar = Button(root, image=photo3, borderwidth=0, command=visualizar)
     botonVizualizar.place(x=856, y=315)
 
     Label(root, text='Visualizar', font=('Arial, 20')).place(x=880, y=500)
