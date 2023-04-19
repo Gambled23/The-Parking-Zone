@@ -1,7 +1,7 @@
 # import the opencv library
 import cv2
 import time
-import leer_ticket
+from leer_ticket import desocuparCajon
 
 # define a video capture object
 vid = cv2.VideoCapture(0, cv2.CAP_DSHOW)
@@ -14,7 +14,8 @@ while True:
     previousData = data
     if len(data) > 0:
         print(data)
-        time.sleep(5)
+        desocuparCajon(data)
+        time.sleep(3)
         
         
     # Display the resulting frame
