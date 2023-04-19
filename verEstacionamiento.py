@@ -26,6 +26,3 @@ def obtenerOcupados():
     print(string.ascii_lowercase.index(cajones[40][0]) + 1) 
     conn.close()
     return cajones
-
-
-obtenerOcupados()
