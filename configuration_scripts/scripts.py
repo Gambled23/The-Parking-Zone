@@ -10,7 +10,7 @@ def createDatabase():
    #Crear el cursor
    cursor = conn.cursor()
 
-   sql = '''CREATE database parkingzone''';
+   sql = '''CREATE database parkingzone'''
 
    #Ejecutar query de crear BD
    cursor.execute(sql)
@@ -80,4 +80,17 @@ def crearAdmin(usuario, contrasena):
    sql = ''f"INSERT into administrador (usuario, contrasena) values ('{usuario}', '{contrasena}')"''
    cursor.execute(sql)
    print(f"usuario {usuario} creado")
+   conn.close()
+
+def eliminarBD():
+   conn = psycopg2.connect(
+      database="postgres", user='postgres', password='usuario', host='127.0.0.1', port= '5432'
+   )
+   conn.autocommit = True
+   cursor = conn.cursor()
+
+   sql = 'DROP database parkingzone;'
+   cursor.execute(sql)
+   print("Programa desinstalado")
+
    conn.close()
