@@ -1,13 +1,16 @@
 from tkinter import *
 from tkinter import messagebox
-from configuration_scripts.scripts import createDatabase, habilitarCajones, crearAdmin
+from configuration_scripts.scripts import createDatabase, habilitarCajones, crearAdmin, eliminarBD
 import string
 
 #Crear base de datos y tablas
 try: 
     createDatabase()
 except: #Si la base de datos ya existe
-    messagebox.showerror('Error', 'El programa ya está instalado')
+    desinstalar = messagebox.askyesno('Error', 'El programa ya está instalado ¿Desea desinstalarlo?')
+    if desinstalar: 
+        eliminarBD()
+        messagebox.showinfo('Programa desinstalado', 'El programa ha sido desinstalado correctamente')
     exit()
 
 
