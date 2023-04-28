@@ -4,7 +4,7 @@ import iniciarSesion
 import string
 from panel_admin.asignarLugares import obtenerUltimosDatos, insertarFila
 from panel_admin.gestionarLugares import obtenerListaLugares, modificarCajon
-from notificaciones import obtenerCajonesSospechosos
+from notificaciones import obtenerCajonesSospechosos, verificarCajonUnico
 from verEstacionamiento import obtenerFilasColumnas, obtenerOcupados
 
 def asignar():
@@ -86,10 +86,18 @@ def visualizar():
     cajones = obtenerOcupados()
     for cajon in cajones:
         if cajon[2] == False:
-            Label(ventanaVisualizar,text='□').grid(row= int(cajon[1]), column= string.ascii_lowercase.index(cajon[0]) + 1, pady=4)
+            #Comprobar si es de discapacitados
+            if cajon[4]:
+                Label(ventanaVisualizar,text='⬜', fg='blue').grid(row= int(cajon[1]), column= string.ascii_lowercase.index(cajon[0]) + 1, pady=4)
+            else:
+                Label(ventanaVisualizar,text='⬜').grid(row= int(cajon[1]), column= string.ascii_lowercase.index(cajon[0]) + 1, pady=4)
         else:
-            Label(ventanaVisualizar,text='■').grid(row= int(cajon[1]), column= string.ascii_lowercase.index(cajon[0]) + 1, pady=4)
-
+            #Comprobar si no es un cajón sospechoso
+            sospechoso = verificarCajonUnico(cajon[3])
+            if sospechoso:
+                Label(ventanaVisualizar,text='⬛', fg='red').grid(row= int(cajon[1]), column= string.ascii_lowercase.index(cajon[0]) + 1, pady=4)
+            else:
+                Label(ventanaVisualizar,text='⬛').grid(row= int(cajon[1]), column= string.ascii_lowercase.index(cajon[0]) + 1, pady=4)
     
 
 
