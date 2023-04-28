@@ -18,6 +18,7 @@ except: #Si la base de datos ya existe
 
 root = Tk()
 root.title('Instalación')
+root.iconbitmap('panel_admin\images\iconoAzul.ico')
 Label(root, text="Instalación", font=('Helvetica 17 bold'), pady=10, padx=25).grid(row=0, column=0, columnspan=4)
 
 #Selección letras

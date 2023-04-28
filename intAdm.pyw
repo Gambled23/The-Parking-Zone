@@ -10,6 +10,7 @@ from verEstacionamiento import obtenerFilasColumnas, obtenerOcupados
 def asignar():
     ventanaAsignar = Toplevel(root)
     ventanaAsignar.title("Asignar")
+    ventanaAsignar.iconbitmap('panel_admin\images\iconoAzul.ico')
     # Create a Label in New window
     letraFila = StringVar()
     numeroFila = StringVar()
@@ -37,6 +38,7 @@ def asignar():
 def modificar():
     ventanaModificar = Toplevel(root)
     ventanaModificar.title("Modificar")
+    ventanaModificar.iconbitmap('panel_admin\images\iconoAzul.ico')
     Label(ventanaModificar, text="Cajon a modificar: ", font=(
         'Helvetica 17 bold'), pady=10, padx=25).grid(row=0, column=0, columnspan=4)
     
@@ -69,6 +71,8 @@ def modificar():
 def visualizar():
     ventanaVisualizar = Toplevel(root)
     ventanaVisualizar.title("Visualizar")
+    ventanaVisualizar.iconbitmap('panel_admin\images\iconoAzul.ico')
+    ventanaVisualizar.resizable(False,False)
     filas, columnas = obtenerFilasColumnas()
     i = 1
     Label(ventanaVisualizar, text='X', font=('Helvetica 10 bold')).grid(row=0, column=0)
