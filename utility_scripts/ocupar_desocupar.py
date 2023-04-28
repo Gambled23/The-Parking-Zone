@@ -8,9 +8,9 @@ def ocuparTodo(ocupar):
     conn.autocommit = True
     cursor = conn.cursor()
     if ocupar:
-        sql = '''UPDATE cajon SET ocupado = True''';
+        sql = 'UPDATE cajon SET ocupado = True'
     else:
-        sql = '''UPDATE cajon SET ocupado = False''';
+        sql = 'UPDATE cajon SET ocupado = False'
     cursor.execute(sql)
     conn.close()
 

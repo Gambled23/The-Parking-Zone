@@ -18,7 +18,7 @@ def obtenerOcupados():
     conn = psycopg2.connect(database="parkingzone", user='postgres', password='usuario', host='127.0.0.1', port= '5432')
     conn.autocommit = True
     cursor = conn.cursor()
-    sql = 'SELECT fila, columna, ocupado from cajon'
+    sql = 'SELECT fila, columna, ocupado, id_cajon from cajon'
     cursor.execute(sql)
     cajones = cursor.fetchall()
     print(cajones[40][0])
