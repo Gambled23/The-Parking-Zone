@@ -86,7 +86,11 @@ def visualizar():
     cajones = obtenerOcupados()
     for cajon in cajones:
         if cajon[2] == False:
-            Label(ventanaVisualizar,text='⬜').grid(row= int(cajon[1]), column= string.ascii_lowercase.index(cajon[0]) + 1, pady=4)
+            #Comprobar si es de discapacitados
+            if cajon[4]:
+                Label(ventanaVisualizar,text='⬜', fg='blue').grid(row= int(cajon[1]), column= string.ascii_lowercase.index(cajon[0]) + 1, pady=4)
+            else:
+                Label(ventanaVisualizar,text='⬜').grid(row= int(cajon[1]), column= string.ascii_lowercase.index(cajon[0]) + 1, pady=4)
         else:
             #Comprobar si no es un cajón sospechoso
             sospechoso = verificarCajonUnico(cajon[3])

@@ -41,5 +41,3 @@ def obtenerCajonesSospechosos():
         autosStr = autosStr + f"El auto en el cajón {cajonSospechoso[0].upper()}-{cajonSospechoso[1]} lleva estacionado desde: {i[2]}\n"
     messagebox.showinfo('Cajones sospechosos ', autosStr)
     conn.close()
-
-verificarCajonUnico('2')
