@@ -21,8 +21,5 @@ def obtenerOcupados():
     sql = 'SELECT fila, columna, ocupado, id_cajon, discapacitados from cajon'
     cursor.execute(sql)
     cajones = cursor.fetchall()
-    print(cajones[40][0])
-    
-    print(string.ascii_lowercase.index(cajones[40][0]) + 1) 
     conn.close()
     return cajones

@@ -60,5 +60,3 @@ def imprimirPDF():
         print_tool.print_file(file)    
     except:
         return
-
-generarPDF(False)
