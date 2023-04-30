@@ -19,7 +19,7 @@ while True:
         
         
     # Display the resulting frame
-    cv2.imshow('frame', frame)
+    cv2.imshow('The Parking Zone - QR', frame)
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
 # After the loop release the cap object

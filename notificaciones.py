@@ -15,10 +15,13 @@ def verificarCajonUnico(id_cajon):
     conn.close()
 
     #Si es cajon sospechoso
-    intervalo = datetime.now() - cajon[0]
-    if intervalo.days >= 2:
-        return True
-    else:
+    try:
+        intervalo = datetime.now() - cajon[0]
+        if intervalo.days >= 2:
+            return True
+        else:
+            return False
+    except:
         return False
     
 def obtenerCajonesSospechosos():
