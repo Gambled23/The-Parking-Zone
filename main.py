@@ -6,6 +6,13 @@ while True:
     discapacitado = int(input('-------THE PARKING ZONE-------\n    1) Discapacitado\n    2) Normal\n'))
 
     if discapacitado == 1:
-        generarPDF(True)
+        try:
+            generarPDF(True)
+        except:
+            input('Ya no hay cajones especiales disponibles, intente con un cajón normal')
     else:
-        generarPDF(False)
+        try:
+            generarPDF(False)
+        except:
+            print('Ya no hay cajones normales disponibles')
+            input('Lamentamos las molestias')
