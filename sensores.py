@@ -1,9 +1,9 @@
 import serial
 import time
 import tkinter as tk
-import comprobarSensores
+#import comprobarSensores
 
-ser = serial.Serial('COM4', 9600, timeout = 1)
+ser = serial.Serial('COM3', 9600, timeout = 1)
 time.sleep(2)
 canSens = 5
 datos = []
@@ -15,9 +15,10 @@ def tecla(evento):
         datos.append(int(ser.read()))
 
     ser.read()
-
+    	
+    print(datos)
     #Datos es 1 si está ocupado, 0 si se desocupa
-    comprobarSensores.comprobarCajon(datos)
+    #comprobarSensores.comprobarCajon(datos)
 
 
 raiz = tk.Tk()

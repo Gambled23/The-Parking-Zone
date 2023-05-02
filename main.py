@@ -8,6 +8,7 @@ while True:
     if discapacitado == 1:
         try:
             generarPDF(True)
+            #Abrir servo
         except:
             input('Ya no hay cajones especiales disponibles, intente con un cajón normal')
     else:
