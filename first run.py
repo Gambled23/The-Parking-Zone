@@ -1,6 +1,7 @@
 from tkinter import *
 from tkinter import messagebox
 from configuration_scripts.scripts import createDatabase, habilitarCajones, crearAdmin, eliminarBD
+from sys import exit
 import string
 
 #Crear base de datos y tablas
