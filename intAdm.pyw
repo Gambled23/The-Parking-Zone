@@ -1,5 +1,6 @@
 from tkinter import *
 from tkinter import messagebox
+from tkinter import ttk
 import iniciarSesion
 import string
 from panel_admin.asignarLugares import obtenerUltimosDatos, insertarFila
@@ -69,21 +70,55 @@ def modificar():
            command=lambda: mandarModificar()).grid(row=3, column=0, columnspan=4, pady=10)
 
 def visualizar():
-    ventanaVisualizar = Toplevel(root)
-    ventanaVisualizar.title("Visualizar")
-    ventanaVisualizar.iconbitmap('panel_admin\images\iconoAzul.ico')
-    ventanaVisualizar.resizable(False,False)
-    filas, columnas = obtenerFilasColumnas()
-    i = 1
-    Label(ventanaVisualizar, text='X', font=('Helvetica 10 bold')).grid(row=0, column=0)
+    VisualizarRoot = Toplevel(root)
+    VisualizarRoot.title("Visualizar")
+    VisualizarRoot.iconbitmap('panel_admin\images\iconoAzul.ico')
+    VisualizarRoot.resizable(False,False)
+    VisualizarRoot.geometry("845x800")
 
-    #Imprimir filas y columnas
+    main_frame = Frame(VisualizarRoot)
+    main_frame.pack(fill=BOTH,expand=1)
+
+    #Frame para X Scrollbar
+    sec = Frame(main_frame)
+    sec.pack(fill=X,side=BOTTOM)
+
+    my_canvas = Canvas(main_frame)
+    my_canvas.pack(side=LEFT,fill=BOTH,expand=1)
+
+    #Agregar scrollbars al canvas
+    x_scrollbar = ttk.Scrollbar(sec,orient=HORIZONTAL,command=my_canvas.xview)
+    x_scrollbar.pack(side=BOTTOM,fill=X)
+    y_scrollbar = ttk.Scrollbar(main_frame,orient=VERTICAL,command=my_canvas.yview)
+    y_scrollbar.pack(side=RIGHT,fill=Y)
+
+    #Configuraciones del canvas
+    my_canvas.configure(xscrollcommand=x_scrollbar.set)
+    my_canvas.configure(yscrollcommand=y_scrollbar.set)
+    my_canvas.bind("<Configure>",lambda e: my_canvas.config(scrollregion= my_canvas.bbox(ALL))) 
+
+    #Crear frame secundario DENTRO del canvas
+    second_frame = Frame(my_canvas)
+
+    #Agregar una window al nuevo frame
+    my_canvas.create_window((0,0),window= second_frame, anchor="nw")
+
+    filas, columnas = obtenerFilasColumnas()
+    #Imprimir filas superiores
+    i = 1
     for fila in filas:
-        Label(ventanaVisualizar,text=fila[0].upper(), font=('Helvetica 10 bold')).grid(row= 0, column= i, padx=8)
+        Label(second_frame,text=fila[0].upper(), font=('Helvetica 10 bold')).grid(row= 0, column= i, padx=8)
         i +=1
+    #Imprimir columnas
     i = 1
     for columna in columnas:
-        Label(ventanaVisualizar,text=columna[0], font=('Helvetica 10 bold')).grid(row= i, column= 0, pady=4)
+        Label(second_frame,text=columna[0], font=('Helvetica 10 bold')).grid(row= i, column= 0, pady=4)
+        i +=1
+    #Imprimir filas inferiores
+    j = len(columnas) + 1
+    i = 1
+    for fila in filas:
+        Label(second_frame,text=fila[0].upper(), font=('Helvetica 10 bold')).grid(row= j, column= i, padx=8)
         i +=1
 
     #Imprimir cajones
@@ -92,16 +127,16 @@ def visualizar():
         if cajon[2] == False:
             #Comprobar si es de discapacitados
             if cajon[4]:
-                Label(ventanaVisualizar,text='⬜', fg='blue').grid(row= int(cajon[1]), column= string.ascii_lowercase.index(cajon[0]) + 1, pady=4)
+                Label(second_frame,text='⬜', fg='blue').grid(row= int(cajon[1]), column= string.ascii_lowercase.index(cajon[0]) + 1, pady=4)
             else:
-                Label(ventanaVisualizar,text='⬜').grid(row= int(cajon[1]), column= string.ascii_lowercase.index(cajon[0]) + 1, pady=4)
+                Label(second_frame,text='⬜').grid(row= int(cajon[1]), column= string.ascii_lowercase.index(cajon[0]) + 1, pady=4)
         else:
             #Comprobar si no es un cajón sospechoso
             sospechoso = verificarCajonUnico(cajon[3])
             if sospechoso:
-                Label(ventanaVisualizar,text='⬛', fg='red').grid(row= int(cajon[1]), column= string.ascii_lowercase.index(cajon[0]) + 1, pady=4)
+                Label(second_frame,text='⬛', fg='red').grid(row= int(cajon[1]), column= string.ascii_lowercase.index(cajon[0]) + 1, pady=4)
             else:
-                Label(ventanaVisualizar,text='⬛').grid(row= int(cajon[1]), column= string.ascii_lowercase.index(cajon[0]) + 1, pady=4)
+                Label(second_frame,text='⬛').grid(row= int(cajon[1]), column= string.ascii_lowercase.index(cajon[0]) + 1, pady=4)
     
 
 
