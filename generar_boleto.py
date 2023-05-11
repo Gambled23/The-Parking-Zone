@@ -27,7 +27,7 @@ def generarPDF (discapacitado):
     letra = cajon[1].upper()
     numero = cajon[2]
     generarQR(cajon)
-    file_path = 'H:\Codigos\The Parking Zone\qrticket.png'
+    file_path = './ticket/qrticket.png'
     context = {'fecha': fecha, 'hora': hora, 'file_path': file_path, 'letra':letra, 'numero':numero}
 
     #Toda la madre para generar el pdf
