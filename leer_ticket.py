@@ -19,4 +19,3 @@ def desocuparCajon(cajon):
     cursor.execute(sql)
 
     conn.close()
-
