@@ -46,7 +46,7 @@ def generarQR(cajon):
     numero = cajon[2]
     data = f'{letra}{numero}'
     img = qrcode.make(data)
-    img.save('./ticket/qrticket.png')
+    img.save('ticket/qrticket.png')
 
 
 
