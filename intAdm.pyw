@@ -14,7 +14,6 @@ def asignar():
     ventanaAsignar.iconbitmap('panel_admin\images\iconoAzul.ico')
     # Create a Label in New window
     letraFila = StringVar()
-    numeroFila = StringVar()
 
     Label(ventanaAsignar, text="Crear nuevas columnas", font=(
         'Helvetica 17 bold'), pady=10, padx=25).grid(row=0, column=0, columnspan=2)
@@ -26,9 +25,9 @@ def asignar():
     ultimoNumero.grid(row=2, column=1)
 
     def obtenerDatos():
-        insertarFila(letraFila.get(), numeroFila.get())
+        insertarFila(letraFila.get(), ultimoLugar[2])
         messagebox.showinfo(
-            'Fila agregada', f'Se ha agregado hasta el cajon {letraFila.get()}-{numeroFila.get()}')
+            'Fila agregada', f'Se ha agregado hasta el cajon {letraFila.get()}-{ultimoLugar[2]}')
         ventanaAsignar.destroy()
 
     Button(ventanaAsignar, text='Agregar fila',
