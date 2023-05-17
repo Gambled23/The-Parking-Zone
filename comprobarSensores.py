@@ -15,4 +15,4 @@ def comprobarCajon(listaCajones):
     messagebox.showwarning('Cajones inconsistentes', cajonStr)
     cursor.close()
 
-#comprobarCajon([1,1,1,0,0,1,1])
+comprobarCajon([1,1,1,0,0,1,1])
