@@ -16,14 +16,13 @@ def asignar():
     letraFila = StringVar()
     numeroFila = StringVar()
 
-    Label(ventanaAsignar, text="Crear nuevos cajones", font=(
+    Label(ventanaAsignar, text="Crear nuevas columnas", font=(
         'Helvetica 17 bold'), pady=10, padx=25).grid(row=0, column=0, columnspan=2)
     Label(ventanaAsignar, text='Letra de la fila: ').grid(row=1, column=0)
     Entry(ventanaAsignar, textvariable=letraFila).grid(row=1, column=1)
     ultimoLugar = obtenerUltimosDatos()
     Label(ventanaAsignar, text='Numero máximo de la fila: ').grid(row=2, column=0)
-    ultimoNumero = Entry(ventanaAsignar, textvariable=numeroFila)
-    ultimoNumero.insert(END, ultimoLugar[2])
+    ultimoNumero = Label(ventanaAsignar, text=ultimoLugar[2])
     ultimoNumero.grid(row=2, column=1)
 
     def obtenerDatos():
