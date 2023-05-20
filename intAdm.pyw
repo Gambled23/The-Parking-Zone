@@ -4,7 +4,7 @@ from tkinter import ttk
 import iniciarSesion
 import string
 from panel_admin.asignarLugares import obtenerUltimosDatos, insertarFila
-from panel_admin.gestionarLugares import obtenerListaLugares, modificarCajon
+from panel_admin.gestionarLugares import obtenerListaLugares, modificarCajon, obtenerFilasPosibles
 from notificaciones import obtenerCajonesSospechosos, verificarCajonUnico
 from verEstacionamiento import obtenerFilasColumnas, obtenerOcupados
 
@@ -17,17 +17,22 @@ def asignar():
 
     Label(ventanaAsignar, text="Crear nuevas columnas", font=(
         'Helvetica 17 bold'), pady=10, padx=25).grid(row=0, column=0, columnspan=2)
+
     Label(ventanaAsignar, text='Letra máxima de la fila: ').grid(row=1, column=0)
-    Entry(ventanaAsignar, textvariable=letraFila).grid(row=1, column=1)
+    letrasPosibles = obtenerFilasPosibles()
+    variableLetras = StringVar()
+    variableLetras.set(letrasPosibles[0])  # Valor por defecto de dropdown
+    OptionMenu(ventanaAsignar, variableLetras, *letrasPosibles).grid(row=1, column=1)
+
     ultimoLugar = obtenerUltimosDatos()
     Label(ventanaAsignar, text='Numero máximo de la fila: ').grid(row=2, column=0)
     ultimoNumero = Label(ventanaAsignar, text=ultimoLugar[2])
     ultimoNumero.grid(row=2, column=1)
 
     def obtenerDatos():
-        insertarFila(letraFila.get(), ultimoLugar[2])
+        insertarFila(variableLetras.get(), ultimoLugar[2])
         messagebox.showinfo(
-            'Fila agregada', f'Se ha agregado hasta el cajon {letraFila.get()}-{ultimoLugar[2]}')
+            'Fila agregada', f'Se ha agregado hasta el cajon {variableLetras.get()}-{ultimoLugar[2]}')
         ventanaAsignar.destroy()
 
     Button(ventanaAsignar, text='Agregar fila',

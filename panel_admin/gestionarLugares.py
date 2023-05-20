@@ -37,3 +37,19 @@ def modificarCajon(letra, numero, discapacitado, ocupado):
     sql = f"UPDATE cajon SET ocupado = cast({ocupado} as boolean) WHERE id_cajon = {id_cajon}"
     cursor.execute(sql)
     conn.close()
+
+def obtenerFilasPosibles():
+    conn = psycopg2.connect(
+        database="parkingzone", user='postgres', password='usuario', host='127.0.0.1', port='5432'
+    )
+    conn.autocommit = True
+
+    cursor = conn.cursor()
+    sql = 'SELECT fila FROM cajon ORDER BY id_cajon desc LIMIT 1' #obtener ultima fila
+    cursor.execute(sql)
+    filasExistentes = cursor.fetchone()
+    #obtener lista de letras del abecedario despues de la letra 'A'
+    filasPosibles = [chr(i) for i in range(ord(filasExistentes[0].upper()) + 1, ord('Z') + 1)]
+    conn.close()
+
+    return filasPosibles
