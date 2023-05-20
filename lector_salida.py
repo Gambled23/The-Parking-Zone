@@ -14,7 +14,10 @@ while True:
     previousData = data
     if len(data) > 0:
         print(data)
-        desocuparCajon(data)
+        try:
+            desocuparCajon(data)
+        except:
+            pass
         time.sleep(3)
         
         
