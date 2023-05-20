@@ -63,6 +63,7 @@ def modificar():
         aux=variableColumnas.get()
         columna = int(''.join(filter(str.isdigit, aux)))
         modificarCajon(fila, columna, discapacitado.get(), ocupado.get())
+        messagebox.showinfo('Cajon modificado',f'El cajon {fila}-{columna} ha sido modificado')
        
     Button(ventanaModificar, text='Modificar cajon',
            command=lambda: mandarModificar()).grid(row=3, column=0, columnspan=4, pady=10)
