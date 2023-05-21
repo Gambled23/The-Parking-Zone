@@ -52,6 +52,6 @@ botonDiscapacitado = Button(root, padx=10, fg='black', bg='#C3E0FC', font=('Helv
 botonDiscapacitado.place(x=20, y=155)
 
 botonNormal = Button(root, padx=10, fg='black', bg='#FDFF8E', font=('Helvetica', 30, 'bold'), text='Normal', command=lambda: boletos(False))
-botonNormal.place(x=300, y=155)
+botonNormal.place(x=290, y=155)
 
 root.mainloop()
