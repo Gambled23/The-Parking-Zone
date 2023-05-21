@@ -25,7 +25,6 @@ def verificarCajonUnico(id_cajon):
         return False
     
 def obtenerCajonesSospechosos():
-    os.system('cls')
     conn = psycopg2.connect(
         database="parkingzone", user='postgres', password='usuario', host='127.0.0.1', port= '5432'
     )
@@ -44,3 +43,21 @@ def obtenerCajonesSospechosos():
         autosStr = autosStr + f"El auto en el cajón {cajonSospechoso[0].upper()}-{cajonSospechoso[1]} lleva estacionado desde: {i[2]}\n"
     messagebox.showinfo('Cajones sospechosos ', autosStr)
     conn.close()
+
+def notificaciones():
+    conn = psycopg2.connect(database="parkingzone", user='postgres', password='usuario', host='127.0.0.1', port= '5432')
+    conn.autocommit = True
+    cursor = conn.cursor()
+    sql = "SELECT DISTINCT id_cajon from notificaciones"
+    cursor.execute(sql)
+    cajones = cursor.fetchall()
+    cadena = ''
+    if not cajones:
+        cadena = 'No hay notificaciones'
+    for i in cajones:
+        sql = f"SELECT fila, columna from cajon where id_cajon = {i[0]}"
+        cursor.execute(sql)
+        fc = cursor.fetchone()
+        cadena = cadena + f"El cajón {fc[0].upper()}-{fc[1]} tuvo un problema\n"
+    conn.close()
+    messagebox.showinfo('Notificaciones', cadena)

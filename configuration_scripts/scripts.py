@@ -45,6 +45,11 @@ def createTables():
    cursor.execute(sql)
    print("Tabla administrador creada")
 
+   #Crear tabla notificaciones
+   sql = 'CREATE TABLE notificaciones(id_notificacion SERIAL, PRIMARY KEY(id_notificacion), id_cajon INTEGER, CONSTRAINT fk_cajon FOREIGN KEY(id_cajon) REFERENCES cajon(id_cajon))'
+   cursor.execute(sql)
+   print("Tabla notificacion creada")
+
    conn.close()
 
 def habilitarCajones(letra, numero):
