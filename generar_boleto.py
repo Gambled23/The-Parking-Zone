@@ -9,7 +9,7 @@ import printfactory
 
 #Actualizar a ocupado registro de tabla cajon
 def actualizarTablas(cajon):
-    cursor = algoritmo_asignacion.conectar();
+    cursor = algoritmo_asignacion.conectar()
     sql = ''f"UPDATE cajon SET ocupado = True WHERE id_cajon = '{cajon[0]}'"'';
     cursor.execute(sql)
     
@@ -39,7 +39,7 @@ def generarPDF (discapacitado):
     pdfkit.from_string(output_text, './ticket/ticket.pdf', configuration=config, css='ticket\style.css', options={"enable-local-file-access": ""})
     
     actualizarTablas(cajon)
-    #imprimirPDF()
+    imprimirPDF()
 
 def generarQR(cajon):
     letra = cajon[1].upper()

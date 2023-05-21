@@ -48,8 +48,8 @@ labelImagen.config(width=100, height=70, bg='black')
 labelImagen.place(x=200, y=10)
 
 # --------------------Body----------------------
-botonDiscapacitado = Button(root, padx=10, fg='black', bg='#C3E0FC', font=('Helvetica', 30, 'bold'), text='Especial', command=lambda: boletos(True))
-botonDiscapacitado.place(x=20, y=155)
+botonDiscapacitado = Button(root, padx=10, fg='black', bg='#C3E0FC', font=('Helvetica', 30, 'bold'), text='Reservado', command=lambda: boletos(True))
+botonDiscapacitado.place(x=15, y=155)
 
 botonNormal = Button(root, padx=10, fg='black', bg='#FDFF8E', font=('Helvetica', 30, 'bold'), text='Normal', command=lambda: boletos(False))
 botonNormal.place(x=290, y=155)
