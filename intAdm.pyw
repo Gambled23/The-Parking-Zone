@@ -5,7 +5,7 @@ import iniciarSesion
 import string
 from panel_admin.asignarLugares import obtenerUltimosDatos, insertarFila
 from panel_admin.gestionarLugares import obtenerListaLugares, modificarCajon, obtenerFilasPosibles
-from notificaciones import obtenerCajonesSospechosos, verificarCajonUnico
+from notificaciones import obtenerCajonesSospechosos, verificarCajonUnico, notificaciones
 from verEstacionamiento import obtenerFilasColumnas, obtenerOcupados
 
 def asignar():
@@ -181,9 +181,13 @@ def ventanaPrincipal():
     crudLabel.config(font=('Arial', 12))
     crudLabel.place(x=10, y=140)
 
-    notificacionesBoton = Button(root, text='CAJONES SOSPECHOSOS', command=lambda:obtenerCajonesSospechosos())
+    cajonSospechosoBoton = Button(root, text='CAJONES SOSPECHOSOS', command=lambda:obtenerCajonesSospechosos())
+    cajonSospechosoBoton.config(bg='#f4eb49', fg='black', padx=30, borderwidth=0)
+    cajonSospechosoBoton.place(x=365, y=115)
+
+    notificacionesBoton = Button(root, text='NOTIFICACIONES', command=lambda:notificaciones())
     notificacionesBoton.config(bg='#f4eb49', fg='black', padx=30, borderwidth=0)
-    notificacionesBoton.place(x=505, y=115)
+    notificacionesBoton.place(x=640, y=115)
 
     salirBoton = Button(root, text='SALIR', command=root.destroy)
     salirBoton.config(bg='#f4eb49', fg='black', padx=30, borderwidth=0)

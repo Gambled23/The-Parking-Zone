@@ -1,7 +1,7 @@
 # import the opencv library
 import cv2
 import time
-from leer_ticket import desocuparCajon
+from leer_ticket import notificarCajonIncorrecto
 from tkinter import messagebox
 from tkinter import *
 from panel_admin.gestionarLugares import obtenerListaLugares
@@ -17,10 +17,11 @@ def ejecutarCamara(fila, columna):
         global previousData
         previousData = data
         if len(data) > 0:
-            if data == f'{fila}-{columna}':
+            if data == f'{fila}{columna}':
                 messagebox.showinfo('Cajon correcto', f'El ticket presentado es para el cajon {data}')
             else:
-                messagebox.showerror('Cajon incorrecto', f'El ticket presentado es para el cajon {data} pero se presentó en {fila}-{columna}')
+                messagebox.showerror('Cajon incorrecto', f'El ticket presentado es para el cajon {data} pero se presentó en {fila}{columna}')
+                notificarCajonIncorrecto(fila, columna)
             time.sleep(3)
 
 
